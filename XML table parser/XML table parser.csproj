@@ -6,6 +6,24 @@
     <RootNamespace>XML_table_parser</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>XML Table Parser</Title>
+    <Authors>Matthew Bracegirdle</Authors>
+    <PackAsTool>False</PackAsTool>
+    <PackageId>XMLParserBase64Extractor</PackageId>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
   </PropertyGroup>
 
 </Project>
