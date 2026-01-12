@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 
@@ -54,13 +55,26 @@ Console.WriteLine(outPath);
 Directory.CreateDirectory(outPath);
 Console.WriteLine(Directory.Exists(outPath));
 Console.WriteLine(dt.Rows.Count);
+
 for (int i = 0; i < dt.Rows.Count; i++)
 {
     Console.WriteLine("Row "+i.ToString());
     string fn = (string)dt.Rows[i][fnc];
-    string b64s = (string)dt.Rows[i][b64c];
-    Console.WriteLine("Base 64 string read");
-    File.WriteAllBytes(Path.Combine(outPath,fn), Convert.FromBase64String(b64s));
+    if (dt.Columns[b64c].DataType.Name == "Byte[]")
+    {
+        byte[] b64bytes = (byte[])dt.Rows[i][b64c];
+        Console.WriteLine("Byte array read");
+        File.WriteAllBytes(Path.Combine(outPath, fn), b64bytes);
+        b64bytes = null;
+    }
+    else
+    {
+        string b64s = (string)dt.Rows[i][b64c];
+        Console.WriteLine("Base 64 string read");
+        File.WriteAllBytes(Path.Combine(outPath, fn), Convert.FromBase64String(b64s));
+        b64s = null;
+    }
+    
     Console.WriteLine(fn);
-    b64s = null;
+    
         }
